@@ -1,0 +1,17 @@
+{
+  "name": "microservices",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KyznecSPM/microservices.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KyznecSPM/microservices/issues"
+  },
+  "homepage": "https://github.com/KyznecSPM/microservices#readme"
+}
