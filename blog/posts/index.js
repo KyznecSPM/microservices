@@ -15,14 +15,14 @@ app.get('/posts', (req, res) => {
 });
 
 app.post('/posts', (req, res) => {
-    const id = randomBytes(4).toString('hex');
-    const { title } = req.body;
+  const id = randomBytes(4).toString('hex');
+  const { title } = req.body;
 
-    posts[id] = { id, title };
+  posts[id] = { id, title };
 
-    res.status(201).send(posts[id]);
+  res.status(201).send(posts[id]);
 });
 
 app.listen(4000, () => {
   console.log('Posts microservice run on port 4000');
-})
+});
