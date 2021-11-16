@@ -8,10 +8,12 @@ export const PostCreate = () => {
   const titleChange = (e) => setTitle(e.currentTarget.value);
   const onSubmit = async (e) => {
     e.preventDefault();
-
-    await axios.post('http://localhost:4000/posts', { title });
-
-    setTitle('');
+    try {
+      await axios.post('http://localhost:4000/posts', { title });
+      setTitle('');
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <Flex>

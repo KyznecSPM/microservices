@@ -2,6 +2,9 @@ import { useState, useEffect, useCallback } from 'react';
 import { Flex, Heading, Card, Box } from 'theme-ui';
 import axios from 'axios';
 
+import { CommentCreate } from './CommentCreate';
+import { CommentList } from './CommentList';
+
 const resPostsToArray = (data) => {
   if (!data) return [];
   return Object.values(data);
@@ -45,7 +48,11 @@ export const PostList = () => {
         }}
       >
         {posts.map(({ id, title }) => (
-          <Card key={id}>{title}</Card>
+          <Card key={id}>
+            <Heading as="h3">{title}</Heading>
+            <CommentList postId={id} />
+            <CommentCreate postId={id} />
+          </Card>
         ))}
       </Flex>
     </Flex>
