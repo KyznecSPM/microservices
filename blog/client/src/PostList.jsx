@@ -10,25 +10,7 @@ const resPostsToArray = (data) => {
   return Object.values(data);
 };
 
-export const PostList = () => {
-  const [posts, setPosts] = useState([]);
-
-  const fetchPosts = useCallback(async () => {
-    try {
-      const res = await axios.get('http://localhost:4000/posts');
-
-      const postsRes = resPostsToArray(res.data);
-
-      setPosts(postsRes);
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchPosts();
-  }, [fetchPosts]);
-
+export const PostList = ({ posts, fetchPosts }) => {
   return (
     <Flex marginTop="16px" sx={{ flexDirection: 'column' }}>
       <Box width={'100%'} sx={{ alignSelf: 'center' }}>
@@ -47,11 +29,11 @@ export const PostList = () => {
           }
         }}
       >
-        {posts.map(({ id, title }) => (
+        {posts.map(({ id, title, comments }) => (
           <Card key={id}>
             <Heading as="h3">{title}</Heading>
-            <CommentList postId={id} />
-            <CommentCreate postId={id} />
+            <CommentList postId={id} comments={comments} />
+            <CommentCreate postId={id} onAfterCreate={fetchPosts} />
           </Card>
         ))}
       </Flex>

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Flex, Box, Input, Label, Button } from 'theme-ui';
 import axios from 'axios';
 
-export const PostCreate = () => {
+export const PostCreate = ({ onAfterPostCreate }) => {
   const [title, setTitle] = useState('');
 
   const titleChange = (e) => setTitle(e.currentTarget.value);
@@ -11,6 +11,7 @@ export const PostCreate = () => {
     try {
       await axios.post('http://localhost:4000/posts', { title });
       setTitle('');
+      onAfterPostCreate();
     } catch (error) {
       console.error(error);
     }
