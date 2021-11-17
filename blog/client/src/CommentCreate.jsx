@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Flex, Box, Input, Label, Button } from 'theme-ui';
 import axios from 'axios';
 
-export const CommentCreate = ({ postId }) => {
+export const CommentCreate = ({ postId, onAfterCreate }) => {
   const [comment, setComment] = useState('');
 
   const titleChange = (e) => setComment(e.currentTarget.value);
@@ -13,6 +13,7 @@ export const CommentCreate = ({ postId }) => {
         content: comment
       });
       setComment('');
+      onAfterCreate();
     } catch (error) {
       console.error(error);
     }

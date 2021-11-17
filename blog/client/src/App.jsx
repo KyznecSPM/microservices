@@ -2,6 +2,8 @@ import { PostCreate } from './PostCreate';
 import { PostList } from './PostList';
 import { Flex, Box, Heading, ThemeProvider } from 'theme-ui';
 
+import { usePosts } from './hooks/usePosts';
+
 const theme = {
   fonts: {
     body: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
@@ -43,6 +45,7 @@ const theme = {
 };
 
 export const App = () => {
+  const { posts, refetchPosts } = usePosts();
   return (
     <ThemeProvider theme={theme}>
       <Flex
@@ -52,10 +55,10 @@ export const App = () => {
           <Heading>Create Post</Heading>
         </Box>
         <Box sx={{ flex: 1 }}>
-          <PostCreate />
+          <PostCreate onAfterPostCreate={refetchPosts} />
         </Box>
         <Box sx={{ flex: 1 }}>
-          <PostList />
+          <PostList posts={posts} fetchPosts={refetchPosts} />
         </Box>
       </Flex>
     </ThemeProvider>
