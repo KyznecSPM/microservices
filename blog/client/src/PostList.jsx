@@ -1,14 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
 import { Flex, Heading, Card, Box } from 'theme-ui';
-import axios from 'axios';
 
 import { CommentCreate } from './CommentCreate';
 import { CommentList } from './CommentList';
-
-const resPostsToArray = (data) => {
-  if (!data) return [];
-  return Object.values(data);
-};
 
 export const PostList = ({ posts, fetchPosts }) => {
   return (

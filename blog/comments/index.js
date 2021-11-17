@@ -8,6 +8,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+const PORT = 4001;
+
 const commentsByPostId = {};
 
 app.get('/posts/:id/comments', (req, res) => {
@@ -17,32 +19,45 @@ app.get('/posts/:id/comments', (req, res) => {
 app.post('/posts/:id/comments', async (req, res) => {
   const commentId = randomBytes(4).toString('hex');
   const { content } = req.body;
-  const { id } = req.params;
+  const { id: postId } = req.params;
 
-  const comments = commentsByPostId[id] || [];
+  const comments = commentsByPostId[postId] || [];
 
-  comments.push({ id: commentId, content });
+  const newComment = { id: commentId, content, status: 'pending', postId };
 
-  commentsByPostId[id] = comments;
+  comments.push(newComment);
+
+  commentsByPostId[postId] = comments;
 
   await axios.post('http://localhost:4005/events', {
     type: 'CommentCreated',
-    data: {
-      id: commentId,
-      content,
-      postId: id
-    }
+    data: newComment
   });
 
   res.status(201).send(comments);
 });
 
-app.post('/events', (req, res) => {
+app.post('/events', async (req, res) => {
   console.log('Receiving Event', req.body.type);
+
+  const { type, data } = req.body;
+  if (type === 'CommentModerated') {
+    const { id, status, postId } = data;
+
+    const comment = commentsByPostId[postId].find(
+      (comment) => comment.id === id
+    );
+    comment.status = status;
+
+    await axios.post('http://localhost:4005/events', {
+      type: 'CommentUpdated',
+      data: comment
+    });
+  }
 
   res.send();
 });
 
-app.listen(4001, () => {
-  console.log('Comments microservice run on port 4001');
+app.listen(PORT, () => {
+  console.log(`Posts microservice run on port ${PORT}`);
 });

@@ -33,6 +33,8 @@ app.post('/events', (req, res) => {
   res.send();
 });
 
-app.listen(4000, () => {
-  console.log('Posts microservice run on port 4000');
+const PORT = 4000;
+
+app.listen(PORT, () => {
+  console.log(`Posts microservice run on port ${PORT}`);
 });
