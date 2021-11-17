@@ -41,6 +41,17 @@ const theme = {
       border: '1px solid',
       borderColor: 'muted'
     }
+  },
+  text: {
+    secondary: {
+      color: 'lightgrey'
+    },
+    main: {
+      color: 'black'
+    },
+    error: {
+      color: 'red'
+    }
   }
 };
 
