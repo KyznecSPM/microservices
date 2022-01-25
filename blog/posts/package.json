@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "build:docker": "docker build -t kyznecspm/posts .",
+    "publish:docker": "docker push kyznecspm/posts"
   },
   "keywords": [],
   "author": "",
