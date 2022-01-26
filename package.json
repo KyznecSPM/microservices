@@ -1,17 +1,25 @@
 {
   "name": "microservices",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "Microservice architecture example Docker, Kubernetes, NodeJS, React.",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KyznecSPM/microservices.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Emelianov D.O.",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/KyznecSPM/microservices/issues"
   },
-  "homepage": "https://github.com/KyznecSPM/microservices#readme"
+  "homepage": "https://github.com/KyznecSPM/microservices#readme",
+  "scripts": {
+    "apply:all": "kubectl apply -f ./blog/infra/k8s",
+    "restart:event-bus": "kubectl rollout restart deployment event-bus-depl",
+    "restart:comments": "kubectl rollout restart deployment comments-depl",
+    "restart:moderation": "kubectl rollout restart deployment moderation-depl",
+    "restart:query": "kubectl rollout restart deployment query-depl",
+    "restart:posts": "kubectl rollout restart deployment posts-depl"
+  }
 }

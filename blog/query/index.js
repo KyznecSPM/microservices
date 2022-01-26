@@ -35,6 +35,7 @@ app.get('/posts', (req, res) => {
 
 app.post('/events', (req, res) => {
   const { type, data } = req.body;
+  console.log('Receiving Event', req.body.type);
 
   handleEvent(type, data);
 
@@ -46,7 +47,7 @@ const PORT = 4002;
 app.listen(PORT, async () => {
   console.log(`Posts microservice run on port ${PORT}`);
 
-  const res = await axios.get('http://localhost:4005/events');
+  const res = await axios.get('http://event-bus-srv:4005/events');
 
   res.data.forEach(({ data, type }) => {
     console.log('Processing event:', type);
