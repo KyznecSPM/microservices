@@ -20,6 +20,7 @@
     "restart:comments": "kubectl rollout restart deployment comments-depl",
     "restart:moderation": "kubectl rollout restart deployment moderation-depl",
     "restart:query": "kubectl rollout restart deployment query-depl",
+    "restart:client": "kubectl rollout restart deployment client-depl",
     "restart:posts": "kubectl rollout restart deployment posts-depl"
   }
 }

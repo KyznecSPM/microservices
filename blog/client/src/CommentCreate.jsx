@@ -9,7 +9,7 @@ export const CommentCreate = ({ postId, onAfterCreate }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:4001/posts/${postId}/comments`, {
+      await axios.post(`http://post.com/posts/${postId}/comments`, {
         content: comment
       });
       setComment('');
