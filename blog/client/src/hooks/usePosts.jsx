@@ -7,7 +7,7 @@ export const usePosts = () => {
 
   const fetchPosts = useCallback(async () => {
     try {
-      const res = await axios.get('http://localhost:4002/posts');
+      const res = await axios.get('http://post.com/posts');
 
       const postsRes = objectToArray(res.data);
 

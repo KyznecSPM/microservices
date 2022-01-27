@@ -1,11 +1,11 @@
 {
-  "name": "query-service",
+  "name": "query",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "build:docker": "docker build -t kyznecspm/query-service ."
+    "build:docker": "docker build -t kyznecspm/query ."
   },
   "keywords": [],
   "author": "",

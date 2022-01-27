@@ -14,12 +14,12 @@ const delay = (ms) =>
 
 app.post('/events', async (req, res) => {
   const { type, data } = req.body;
-
+  console.log('Receiving Event', req.body.type);
   if (type === 'CommentCreated') {
     const { id, content, postId } = data;
     await delay(10000);
     const status = content.includes('orange') ? 'rejected' : 'approved';
-    await axios.post('http://localhost:4005/events', {
+    await axios.post('http://event-bus-srv:4005/events', {
       type: 'CommentModerated',
       data: {
         id,
